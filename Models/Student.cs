@@ -10,6 +10,7 @@ namespace devsistemas.Models
         public string? UserName { get; set; }
         public string? Email { get; set; }  
         public string? Ra { get; set; }
+        [DisplayName("Grade")]
         public int Note { get; set; }
     }
 }

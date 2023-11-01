@@ -21,6 +21,11 @@ namespace devsistemas.Controllers
             _context = context;
         }
 
+        public IActionResult NotAuthorized()
+        {
+            return View();
+        }
+
         // GET: Student
         public async Task<IActionResult> Index()
         {
@@ -42,12 +47,7 @@ namespace devsistemas.Controllers
             if (student == null)
             {                
                 return NotFound();
-            }
-
-            if(student.Email != User.Identity.Name)
-            {
-                return NotFound();
-            }
+            }            
 
             return View(student);
         }
@@ -90,7 +90,7 @@ namespace devsistemas.Controllers
 
             if (student.Email != User.Identity.Name)
             {
-                return NotFound();
+                return View("NotAuthorized");
             }
 
             return View(student);
@@ -146,9 +146,9 @@ namespace devsistemas.Controllers
                 return NotFound();
             }
 
-            if (student.UserName != User.Identity.Name)
+            if (student.Email != User.Identity.Name)
             {
-                return NotFound();
+                return View("NotAuthorized");
             }
 
             return View(student);
